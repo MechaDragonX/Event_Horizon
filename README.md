@@ -1,1 +1,1 @@
-# Projact Galaxy
+# Project Galaxy
