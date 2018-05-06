@@ -10,7 +10,8 @@ public class playerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
+        canJump = true;
 	}
 	
 	// Update is called once per frame`
@@ -25,11 +26,12 @@ public class playerScript : MonoBehaviour {
             dir.x += speed;
         }
 
-        if (canJump)
-        {
-            dir.y += jumpStrength;
-            canJump = false;
-        }
+        //if(canJump)
+        //{
+
+        //    dir.y += jumpStrength;
+        //    canJump = false;
+        //}
 
         this.GetComponent<Rigidbody2D>().AddForce(dir);
     }

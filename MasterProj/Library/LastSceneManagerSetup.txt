@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/testScene.unity
+- path: C:/Users/ragha/Downloads/Project_Galaxy-da0f88fe4f8b00da27cc44005f0000165afb509a/MasterProj/Assets/testScene.unity
   isLoaded: 1
   isActive: 1
