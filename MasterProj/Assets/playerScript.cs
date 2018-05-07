@@ -39,6 +39,7 @@ public class playerScript : MonoBehaviour {
         rigid.velocity = currentVector;
     }
 
+    //Jumping doesn't work. --Raghav
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (Input.GetKeyDown(KeyCode.Space))
