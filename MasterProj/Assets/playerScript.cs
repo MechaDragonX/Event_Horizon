@@ -37,12 +37,12 @@ public class playerScript : MonoBehaviour {
         }
 
         //When pressed the player moves up. If the button is held down, like Mario the player jump a greater height.
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             currentVector.y += (accelerationFactor * jumpStrength);
         }
         //When released the player moves down.
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             currentVector.y -= (accelerationFactor * jumpStrength);
         }
