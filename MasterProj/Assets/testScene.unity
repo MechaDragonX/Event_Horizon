@@ -300,7 +300,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topSpeed: 5
   accelerationFactor: 0.1
-  jumpStrength: 500
+  jumpStrength: 1000
+  VvelocityCap: 10
 --- !u!61 &1027576426
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class playerScript : MonoBehaviour {
     public float topSpeed = 1f;
     public float accelerationFactor = 0.6f;
     public float jumpStrength = 1f;
+    public float VvelocityCap = 5f;
     private Rigidbody2D rigid;
 
 	// Use this for initialization
@@ -16,6 +17,12 @@ public class playerScript : MonoBehaviour {
 	
 	// Update is called once per frame`
 	void FixedUpdate () {
+        //Velocity Cap
+        if(rigid.velocity.y > VvelocityCap)
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, VvelocityCap);
+        }
+
         //Stop the player from spinning
         rigid.angularVelocity = 0f;
         this.transform.eulerAngles = new Vector3();
@@ -37,6 +44,14 @@ public class playerScript : MonoBehaviour {
         }
         currentVector.x += accelerationFactor * (intendedVelocity - currentVector.x);
         rigid.velocity = currentVector;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rigid.AddForce(new Vector2(0, jumpStrength));
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
