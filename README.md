@@ -1,2 +1,1 @@
 # Project Galaxy
-A game

@@ -166,3 +166,4 @@ C:\Users\ragha\Documents\GitHub\Project_Galaxy\MasterProj\obj\Debug\Assembly-CSh
 C:\Users\ragha\Documents\GitHub\Project_Galaxy\MasterProj\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\ragha\Documents\GitHub\Project_Galaxy\MasterProj\obj\Debug\Assembly-CSharp.dll
 C:\Users\ragha\Documents\GitHub\Project_Galaxy\MasterProj\obj\Debug\Assembly-CSharp.pdb
+C:\Users\ragha\Documents\GitHub\Project_Galaxy\MasterProj\Temp\bin\Debug\XInputDotNetPure.dll

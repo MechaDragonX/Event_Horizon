@@ -38,18 +38,30 @@ public class XInput : MonoBehaviour {
         float intendedVelocity = 0f;
 
         //When DPad is pressed on the left, the character will move to the Left
-        if (prevState.DPad.Left == ButtonState.Released && state.DPad.Left == ButtonState.Pressed)
+        //if (prevState.DPad.Left == ButtonState.Released && state.DPad.Left == ButtonState.Pressed)
+        if (state.DPad.Left == ButtonState.Pressed)
         {
             intendedVelocity -= topSpeed;
-            {
-                if (prevState.DPad.Right == ButtonState.Released && state.DPad.Right == ButtonState.Pressed)
-                {
-                    intendedVelocity += topSpeed;
-                }
-                currentVector.x += accelerationFactor * (intendedVelocity - currentVector.x);
-                rigid.velocity = currentVector;
-            }
         }
+        //if (prevState.DPad.Right == ButtonState.Released && state.DPad.Right == ButtonState.Pressed)
+        if (state.DPad.Right == ButtonState.Pressed)
+        {
+            intendedVelocity += topSpeed;
+        }
+
+        //When pressed the player moves up. If the button is held down, like Mario the player jump a greater height.
+        if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
+        {
+            currentVector.y += (accelerationFactor * jumpStrength);
+        }
+        //When released the player moves down.
+        if (prevState.Buttons.A == ButtonState.Pressed && state.Buttons.A == ButtonState.Released)
+        {
+            currentVector.y -= (accelerationFactor * jumpStrength);
+        }
+
+        currentVector.x += accelerationFactor * (intendedVelocity - currentVector.x);
+        rigid.velocity = currentVector;
     }
 
     // Update is called once per frame
@@ -77,7 +89,7 @@ public class XInput : MonoBehaviour {
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (state.Buttons.A == ButtonState.Pressed)
         {
             rigid.AddForce(new Vector2(0, jumpStrength));
         }

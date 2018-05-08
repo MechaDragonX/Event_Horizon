@@ -35,16 +35,21 @@ public class playerScript : MonoBehaviour {
         {
             intendedVelocity += topSpeed;
         }
-        currentVector.x += accelerationFactor * (intendedVelocity - currentVector.x);
-        rigid.velocity = currentVector;
-    }
 
-    //Jumping doesn't work. --Raghav
-    private void OnCollisionStay2D(Collision2D collision)
-    {
+        //When pressed the player moves up. If the button is held down, like Mario the player jump a greater height.
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            currentVector.y += (accelerationFactor * jumpStrength);
+        }
+        //When released the player moves down.
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rigid.AddForce(new Vector2(0,jumpStrength));
+            currentVector.y -= (accelerationFactor * jumpStrength);
         }
+
+        currentVector.x += accelerationFactor * (intendedVelocity - currentVector.x);
+        rigid.velocity = currentVector;
+
+   
     }
 }
