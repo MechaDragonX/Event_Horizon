@@ -2,20 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerScript : MonoBehaviour {
+public class playerScript : MonoBehaviour
+{
 
     public float topSpeed = 1f;
     public float accelerationFactor = 0.6f;
     public float jumpStrength = 1f;
+    public float VvelocityCap = 5f;
     private Rigidbody2D rigid;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         rigid = this.GetComponent<Rigidbody2D>();
-	}
-	
-	// Update is called once per frame`
-	void FixedUpdate () {
+    }
+
+    // Update is called once per frame`
+    void FixedUpdate()
+    {
+        //Velocity Cap
+        if (rigid.velocity.y > VvelocityCap)
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, VvelocityCap);
+        }
+
         //Stop the player from spinning
         rigid.angularVelocity = 0f;
         this.transform.eulerAngles = new Vector3();
@@ -27,7 +37,7 @@ public class playerScript : MonoBehaviour {
         Vector2 currentVector = rigid.velocity;
         float intendedVelocity = 0f;
 
-        if(Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             intendedVelocity -= topSpeed;
         }
@@ -36,20 +46,28 @@ public class playerScript : MonoBehaviour {
             intendedVelocity += topSpeed;
         }
 
-        //When pressed the player moves up. If the button is held down, like Mario the player jump a greater height.
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            currentVector.y += (accelerationFactor * jumpStrength);
-        }
-        //When released the player moves down.
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            currentVector.y -= (accelerationFactor * jumpStrength);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    rigid.AddForce(new Vector2(0, jumpStrength));
+        //}
 
         currentVector.x += accelerationFactor * (intendedVelocity - currentVector.x);
         rigid.velocity = currentVector;
+    }
 
-   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rigid.AddForce(new Vector2(0, jumpStrength));
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rigid.AddForce(new Vector2(0, jumpStrength));
+        }
     }
 }
