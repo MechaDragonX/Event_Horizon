@@ -1,2 +1,2 @@
-# Project Galaxy
+# Event Horizon
 A game
